@@ -3,6 +3,26 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h1{
+    color: rgba(0, 0, 112, 0.486);
+    font-weight: lighter;
+}
+
+h2{
+    color: rgba(0, 0, 112, 0.486);
+    font-weight: lighter;
+}
+
+h3{
+    color: rgba(0, 0, 112, 0.486);
+    font-weight: lighter;
+}
+
+h4{
+    color: rgba(0, 0, 112, 0.486);
+    font-weight: lighter;
+}
+
 .navbar{
     background-color: rgb(39, 39, 39);
     padding: 1em;
@@ -49,6 +69,8 @@ body{
 
 .slideShowImage{
     width: 100%;
+    min-height: auto;
+    max-height: 100%;
 }
 
 .comingSoonText{
@@ -59,12 +81,10 @@ body{
     width: 100%;
 }
 
-.grid{
-    display: grid-inline;
+.grid-container{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: grid;
     grid-template-columns: auto auto auto auto;
-}
-
-.grid-item{
-    width: 50%;
-    grid-area: 1/3;
+    grid-column-gap: 10px;
 }

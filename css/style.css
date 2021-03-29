@@ -88,3 +88,87 @@ h4{
     grid-template-columns: auto auto auto auto;
     grid-column-gap: 10px;
 }
+
+.card{
+    width: 320px;
+    float: left;
+    border: 1px solid #000;
+    text-align: center;
+    padding: 6px;
+}
+
+.card img{
+    width: 320px;
+}
+
+div .card-title{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+div .card-description{
+    text-align: center;
+}
+
+.game-list{
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.game-card{
+    width: 90%;
+    border: 1px solid #000;
+    padding: 12px 14px;
+    margin-top: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+}
+
+.game-image{
+    width: 6cm;
+    height: 6cm;
+    display: block;
+    float: left;
+}
+
+.game-card > h1{
+    margin-left: 6.5cm;
+}
+
+.game-card > p{
+    margin-left: 6.5cm;
+    color: wheat;
+}
+
+.game-card > .price{
+    margin-left: 6.5cm;
+}
+
+h1 .game-card-title{
+    margin-left: 12px;
+}
+
+.pagination {
+    display: flex;
+    margin-top: 24px;
+}
+
+.pagination > div > a{
+    padding: 12px 16px;
+    margin: 12px;
+    text-decoration: none;
+    color: beige;
+}
+
+.pagination > div.active >a {
+    background-color: rgb(0, 22, 56);
+    color: white;
+    border-radius: 100%;
+}
+
+.pagination > div > a:hover{
+    color: white;
+    background-color: blue;
+    border-radius: 100%;
+}

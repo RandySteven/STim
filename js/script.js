@@ -12,3 +12,32 @@ function slideShow(){
     slides[slide-1].style.display = "block";
     setTimeout(slideShow, 10000)
 }
+
+function setDefaultValue(){
+    let selectedValue = document.getElementById('paymentMethod').value;
+    let visaForm = `
+        <form>
+            <h2>Visa</h2>
+        </form>
+    `
+    let paypalForm = `
+        <form>
+            <h2>Paypal</h2>
+        </form>
+    `
+    let mastercardForm = `
+        <form>
+            <h2>Master Card</h2>
+            
+        </form>
+    `
+    if(selectedValue === "Visa"){
+        document.getElementById('form').innerHTML = visaForm;
+    }
+    if(selectedValue === "Paypal"){
+        document.getElementById('form').innerHTML = paypalForm;
+    }
+    if(selectedValue === "Mastercard"){
+        document.getElementById('form').innerHTML = mastercardForm;
+    }
+}

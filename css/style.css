@@ -87,6 +87,16 @@ h4{
     width: 100%;
 }
 
+.main-container{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+    padding-top: 12px;
+    padding-bottom: 16px;
+}
+
+.success-message{
+    color: green;
+}
+
 .container{
     display: block;
     margin-left: auto;
@@ -213,6 +223,7 @@ h1 .game-card-title{
 
 .btn {
     padding: 10px 10px;
+    border: none;
 }
 
 .btn{

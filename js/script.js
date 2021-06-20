@@ -14,6 +14,9 @@ function slideShow(){
 }
 
 function paymentValidation(){
+    var alpha = /^[A-Za-z]+$/
+    var alphanumbs = /^[0-9a-zA-Z]+$/
+    var numbs = /^[0-9]+$/
     let country = document.forms['paymentForm']['country'].value;
     let full_name = document.forms['paymentForm']['full_name'].value;
     let username = document.forms['paymentForm']['username'].value;
@@ -26,6 +29,7 @@ function paymentValidation(){
     let error_message = "error-message";
     let success_message = "success-message";
 
+    //Country
     if(country == ""){
         let message = "Country must selected";
         document.getElementById('error_country').innerHTML = `<p class="${error_message}">${message}</p>`
@@ -36,14 +40,25 @@ function paymentValidation(){
         validation1=true;
     }
 
+    //Full name
     if(full_name == ""){
         let message = "Fullname must required";
+        document.getElementById('full_name').style.borderColor = "red";
         document.getElementById('error_full_name').innerHTML = `<p class="${error_message}">${message}</p>`
         validation2 = false;
     }else{
-        let message = "Full name filled"
-        document.getElementById('error_full_name').innerHTML = `<p class="${success_message}">${message}</p>`
-        validation2=true;
+        let message;
+        if(full_name.match(alpha)){
+            message = "Full name filled";
+            document.getElementById('full_name').style.borderColor = "green";
+            document.getElementById('error_full_name').innerHTML = `<p class="${success_message}">${message}</p>`
+            validation2=true;
+        }else{
+            message = "Full name must alphabet only"
+            document.getElementById('full_name').style.borderColor = "red";
+            document.getElementById('error_full_name').innerHTML = `<p class="${error_message}">${message}</p>`
+            validation2=false;
+        }
     }
 
     if(username == "" && username.length <= 10){
@@ -54,10 +69,12 @@ function paymentValidation(){
         if(username.length <= 10){
             message = "Username length must less than 10"
         }
+        document.getElementById('username').style.borderColor = "red"
         document.getElementById('error_username').innerHTML = `<p class="${error_message}">${message}</p>`
         validation3 = false;
     }else{
         let message = "Username filled"
+        document.getElementById('username').style.borderColor = "green"
         document.getElementById('error_username').innerHTML = `<p class="${success_message}">${message}</p>`
         validation3=true;
     }
@@ -70,6 +87,7 @@ function paymentValidation(){
         if(!email.endsWith('.com')){
             message = "Email must end with .com"
         }
+        document.getElementById('email').style.borderColor = "red"
         document.getElementById('error_email').innerHTML = `<p class="${error_message}">${message}</p>`
         validation4 = false;
     }else{
@@ -80,12 +98,23 @@ function paymentValidation(){
 
     if(password == ""){
         let message = "Password must required";
+        document.getElementById('password').style.borderColor = "red";
         document.getElementById('error_password').innerHTML = `<p class="${error_message}">${message}</p>`
         validation5 = false;
     }else{
-        let message = "Password success"
-        document.getElementById('error_password').innerHTML = `<p class="${success_message}">${message}</p>`
-        validation5=true;
+        let message;
+        var passwordBorder = document.getElementById('password').style.borderColor;
+        if(password.match(alphanumbs)){
+            message = "Password success";
+            passwordBorder = "green"
+            document.getElementById('error_password').innerHTML = `<p class="${success_message}">${message}</p>`
+            validation5=true;
+        }else{
+            message = "Password must contains Uppercase lowercase and numeric";
+            passwordBorder = "red"
+            document.getElementById('error_password').innerHTML = `<p class="${error_message}">${message}</p>`
+            validation5 = false;
+        }
     }
 
     if(payment_method == ""){
@@ -98,20 +127,31 @@ function paymentValidation(){
         validation6=true;
     }
 
-    if(debit_number == "" && debit_number.length < 16){
+    if(debit_number == "" && debit_number.length != 16){
         let message;
         if(debit_number == ""){
             message = "Debit number must be filled"
         }
-        if(debit_number.length < 16){
+        if(debit_number.length != 16){
             message = "Debit number length must be 16"
         }
+        document.getElementById('debit_number').style.borderColor = "red";
         document.getElementById('error_debit_number').innerHTML = `<p class="${error_message}">${message}</p>`
         validation7 = false;
     }else{
-        let message = "Debit Number filled"
-        document.getElementById('error_debit_number').innerHTML = `<p class="${success_message}">${message}</p>`
-        validation7=true;
+        let message;
+        var debitNumberBorder = document.getElementById('debit_number').style.borderColor;
+        if(debit_number.match(numbs)){
+            message = "Debit Number filled";
+            debitNumberBorder = "green";
+            document.getElementById('error_debit_number').innerHTML = `<p class="${success_message}">${message}</p>`
+            validation7=true;
+        }else{
+            message = "Debit Number must number only";
+            debitNumberBorder = "red";
+            document.getElementById('error_debit_number').innerHTML = `<p class="${error_message}">${message}</p>`
+            validation7=false;
+        }
     }
 
     if(exp == "" && exp.length < 5){
@@ -122,12 +162,37 @@ function paymentValidation(){
         if(exp.length < 5){
             message = "Exp format must mm/yy";
         }
+        document.getElementById('exp').style.borderColor = "red";
         document.getElementById('error_exp').innerHTML = `<p class="${error_message}">${message}</p>`
         validation8 = false;
     }else{
-        let message = "Expired Filled"
-        document.getElementById('error_exp').innerHTML = `<p class="${success_message}">${message}</p>`
-        validation8=true;
+        let message;
+        exp = exp.split('/');
+        var pattern = /^\d{2}$/;
+        var expBorder = document.getElementById('exp').style.borderColor;
+        if(exp[0]<1 || exp[0]>12){
+            message = "Please enter a valid format MM/YY";
+            expBorder = "red";
+            document.getElementById('error_exp').innerHTML = `<p class="${error_message}">${message}</p>`
+            validation8 = false;
+        }
+        else if(!pattern.test(exp[0]) || !pattern.test(exp[1])){
+            message = "Please enter a valid format MM/YY";
+            expBorder = "red";
+            document.getElementById('error_exp').innerHTML = `<p class="${error_message}">${message}</p>`
+            validation8 = false;
+        }
+        else if(exp[2]){
+            message = "Please enter a valid format MM/YY";
+            expBorder = "red";
+            document.getElementById('error_exp').innerHTML = `<p class="${error_message}">${message}</p>`
+            validation8 = false;
+        }else{
+            message = "Success filled exp date"
+            expBorder = "green";
+            document.getElementById('error_exp').innerHTML = `<p class="${success_message}">${message}</p>`
+            validation8=true;
+        }
     }
 
     if(validation1 == false || validation2 == false || validation3 == false || validation4 == false ||

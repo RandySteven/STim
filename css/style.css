@@ -267,8 +267,11 @@ a.active{
 }
 
 input{
-    padding-top: 5px;
+    color: white;
+    padding-top: 6px;
     padding-bottom: 7px;
+    background-color: #1b2838;
+    border: #FFF 2px solid;
 }
 
 select{
